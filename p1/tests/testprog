@@ -1,0 +1,7 @@
+
+
+DO
+	display "Hello, world!" !
+	display $a !
+	newline !
+DONE

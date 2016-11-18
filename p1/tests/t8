@@ -1,0 +1,17 @@
+VAR
+	$weekdays = '(mon tue wed thu fri)
+	$days = append $weekdays '(sat sun) !
+	$party = '()
+DO
+	LET $party = member 'fri $days !
+	display "Going out on" !
+	FOR $i = 0 TO - length $party ! 1 !
+		VAR
+			$day = list-ref $party $i !
+		DO
+			display $day !
+			display " " !
+		DONE
+	LOOP
+	newline !
+DONE

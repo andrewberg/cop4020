@@ -1,0 +1,6 @@
+VAR
+	$x = 10
+DO
+	LET $x = + $x 1 !
+	display $x !
+DONE

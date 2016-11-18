@@ -1,0 +1,11 @@
+VAR
+	$i = 5
+	$fac = 1
+DO
+	display "Hello, world!" !
+	newline !
+	display - 5 3 ! !
+	newline !
+	LET $fac = 5 !
+	display $fac !
+DONE

@@ -1,0 +1,10 @@
+VAR
+	$a = 8
+	$b = 1
+DO
+	UNTIL eq? $a $b !
+		let $b = + $b 1 !
+		display $b !
+		newline !
+	LOOP
+DONE

@@ -1,0 +1,5 @@
+VAR
+	$a = 12
+DO
+	display $a !
+DONE

@@ -1,0 +1,10 @@
+VAR
+	$num = 10
+	$fac = 1
+DO
+	FOR $i = 1 TO $NUM
+		LET $fac = * $i $fac !
+	LOOP
+	display $fac !
+	newline !
+DONE

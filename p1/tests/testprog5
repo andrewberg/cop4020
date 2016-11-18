@@ -1,0 +1,5 @@
+IF < $a $b !
+	display "IF BLOCK" !
+ELSE
+	display "ELSE BLOCK" !
+ENDIF

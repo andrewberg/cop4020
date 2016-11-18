@@ -1,0 +1,6 @@
+VAR
+	$x = 10
+DO
+	display * 2 $x ! !
+	newline !
+DONE
