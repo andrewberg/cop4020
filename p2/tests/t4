@@ -1,0 +1,5 @@
+let x = 50 in 
+	let y = 4 in
+		x * y
+	end
+end
