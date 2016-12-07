@@ -11,11 +11,11 @@
 #include <string>
 #include <vector>
 
-int expr();
-int term();
-int term_tail(int);
-int factor();
-int factor_tail(int);
+long long expr();
+long long term();
+long long term_tail(long long);
+long long factor();
+long long factor_tail(long long);
 std::string id();
 void test_parse();
 void getnext();
@@ -24,6 +24,6 @@ void getnext();
 int lookahead();
 bool isNumber(char);
 void pop();
-void push(std::string, int);
-int lookup(std::string);
-int num();
+void push(std::string, long long);
+long long lookup(std::string);
+long long num();

@@ -1,0 +1,8 @@
+let x = 3 in
+
+	(let x = 2 in
+
+		let x = 1 in
+		x * x
+		end) end
+	end

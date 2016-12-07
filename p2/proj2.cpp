@@ -3,27 +3,26 @@
 #include "proj2.h"
 
 int current = 0;
-int number;
+long long number;
 std::string name; // max identifier name length is 79
 std::string buffer;
-std::vector<std::pair<std::string, int>> vec;
+std::vector<std::pair<std::string, long long>> vec;
 
 int main()
 {
-  int x = expr();
-
-  std::cout << "Result: " << x << std::endl;
+  //std::cout << x;
+  printf("%lld", expr());
   //test_parse();
   return 0;
 }
 
 /* the <expr> parser */
-int expr()
+long long expr()
 {
-  int result;
+  long long result;
   if (lookahead() == LET) {
     std::string name1;
-    int value;
+    long long value;
     match(LET);         // let
     name1 = id();       // id
     match('=');         // =
@@ -34,7 +33,7 @@ int expr()
     match(END);         // end
     pop();              // <pop>
   } else {
-    int value = term(); 
+    long long value = term(); 
     result = term_tail(value);
   }
   
@@ -42,11 +41,11 @@ int expr()
 }
 
 // the <term> intrepreter
-int term()
+long long term()
 {
-  int result;
+  long long result;
 
-  int value = factor();
+  long long value = factor();
   ////std::cout << "Value in factor: " << value << std::endl;
   result = factor_tail(value);
 
@@ -55,16 +54,16 @@ int term()
 
 // the <term_tail> parser
 // val = term.value
-int term_tail(int val)
+long long term_tail(long long val)
 {
-  int result;
+  long long result;
   if (lookahead() == '+') {
     match('+');
-    int tt2 = val + term();
+    long long tt2 = val + term();
     result = tt2;
   } else if (lookahead() == '-') {
     match('-');
-    int tt2 = val - term();
+    long long tt2 = val - term();
     result = tt2;
   } else {
     result = val;
@@ -74,10 +73,10 @@ int term_tail(int val)
 }
 
 // the <factor> parser
-int factor()
+long long factor()
 {
   ////std::cout << "In factor" << std::endl;
-  int result;
+  long long result;
 
   if (lookahead() == '(') { // +
     //std::cout << "New expr." << std::endl;
@@ -100,18 +99,18 @@ int factor()
   return result;
 }
 
-int factor_tail(int val)
+long long factor_tail(long long val)
 {
-  int result;
+  long long result;
 
   if (lookahead() == '*') { // +
     match('*');
-    int ft2 = val * factor();
+    long long ft2 = val * factor();
     result = ft2;
   } else if (lookahead() == '/') { // - 
     match('/');
-    int factorval = factor();
-    int ft2 = val / factorval;
+    long long factorval = factor();
+    long long ft2 = val / factorval;
     result = ft2;
   } else {
     result = val;
@@ -162,7 +161,7 @@ void getnext()
   } else if (isNumber(c)) { // check if a number
     current = NUM; // set current to #define value of NUM
     ungetc(c, stdin); // unget that value that made isNumber true
-    scanf("%d", &number); // scanf the value to number
+    scanf("%lld", &number); // scanf the value to number
   } else {
     current = c; 
   }
@@ -173,7 +172,7 @@ void match(int token)
    if (lookahead() == token)
       getnext();
    else
-      ; // report syntax error and exit
+      ; // report syntax error and exit TODO
 }
 
 int lookahead()
@@ -186,11 +185,10 @@ int lookahead()
 std::string id()
 {
   getnext();
-  //std::cout << "id() = " << name << std::endl;
   return name;
 }
 
-int num()
+long long num()
 {
   getnext();
   return number;
@@ -201,9 +199,9 @@ bool isNumber(char c) // helper function for the scanner
   return isdigit(c); 
 }
 
-void push(std::string str, int i) // push helper function
+void push(std::string str, long long i) // push helper function
 {
-  vec.push_back(std::pair<std::string, int> (str, i));
+  vec.push_back(std::pair<std::string, long long> (str, i));
   //std::cout << "pushing back: " << str << " " << i << std::endl;
 }
 
@@ -213,9 +211,9 @@ void pop() // pop helper function
   vec.pop_back();
 }
 
-int lookup(std::string val) // lookup an id value
+long long lookup(std::string val) // lookup an id value
 {
-  for (int i = 0; i < vec.size(); ++i) {
+  for (int i = vec.size(); i >= 0; --i) {
     if (vec[i].first == val) {
       return vec[i].second;
     }
@@ -232,7 +230,7 @@ void test_parse()
            //std::cout << "ID=" << name << std::endl;
            break;
         case NUM:
-           printf("NUM=%d\n", number);
+           printf("NUM=%lld\n", number);
            break;
         default:
            printf("%c\n", lookahead());
