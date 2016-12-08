@@ -60,11 +60,11 @@ long long term_tail(long long val)
   if (lookahead() == '+') {
     match('+');
     long long tt2 = val + term();
-    result = tt2;
+    result = term_tail(tt2);
   } else if (lookahead() == '-') {
     match('-');
     long long tt2 = val - term();
-    result = tt2;
+    result = term_tail(tt2);
   } else {
     result = val;
   }
@@ -106,12 +106,12 @@ long long factor_tail(long long val)
   if (lookahead() == '*') { // +
     match('*');
     long long ft2 = val * factor();
-    result = ft2;
+    result = factor_tail(ft2);
   } else if (lookahead() == '/') { // - 
     match('/');
     long long factorval = factor();
     long long ft2 = val / factorval;
-    result = ft2;
+    result = factor_tail(ft2);
   } else {
     result = val;
     ////std::cout << "Result in factor num: " << result << std::endl;
