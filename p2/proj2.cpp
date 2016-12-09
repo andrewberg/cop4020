@@ -204,7 +204,8 @@ void pop() // pop helper function
 
 long long lookup(std::string val) // lookup an id value
 {
-  for (int i = vec.size(); i >= 0; --i) { // reads vec from back and then
+  for (int i = vec.size()-1; i >= 0; --i) { // reads vec from back and then
+    printf("before if statement");
     if (vec[i].first == val) { // returns value from back if exists
       return vec[i].second;
     }
