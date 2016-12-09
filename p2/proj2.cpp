@@ -162,10 +162,10 @@ void match(int token)
 {
   if (lookahead() == token)
     getnext();
-  else { // report syntax error and exit TODO
-    printf("Syntax error.");
-    exit(0); // stops program
-  }
+  //else { // report syntax error and exit TODO
+  //  printf("Syntax error.");
+  //  exit(0); // stops program
+ //}
 }
 
 int lookahead()
