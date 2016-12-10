@@ -6,7 +6,9 @@ int current = 0;
 long long number;
 std::string name; // max identifier name length is 79
 std::string buffer;
-std::vector<std::pair<std::string, long long>> vec;
+
+std::vector< std::vector<std::pair<std::string, long long> > > vec;
+std::vector<std::pair<std::string, long long> > tempvec;
 
 int main()
 {
@@ -18,18 +20,25 @@ int main()
 long long expr()
 {
   long long result;
-  if (lookahead() == LET) { // looks for a let statement
+  if (lookahead() == LET) {     // looks for a let statement
     std::string name1;
     long long value;
-    match(LET);         // let
-    name1 = id();       // id
-    match('=');         // =
-    value = expr();     // <expr>
+    match(LET);                 // let
+
+    while (lookahead() != IN) { // let vars
+      name1 = id();             // id
+      match('=');               // =
+      value = expr();           // num()
+      pushtemp(name1, value);   // pushes onto temp var
+      gotosemi();
+    }
+
     match(IN);          // in
-    push(name1, value); // <push>
+    push(tempvec);      // <push>
     result = expr();    // <expr>
     match(END);         // end
     pop();              // <pop>
+    tempvec.empty();    // emptys the globaltempvec
   } else {
     long long value = term(); // calls term() given
     result = term_tail(value); // calls term_tail() with teh given value
@@ -162,10 +171,16 @@ void match(int token)
 {
   if (lookahead() == token)
     getnext();
-  //else { // report syntax error and exit TODO
-  //  printf("Syntax error.");
-  //  exit(0); // stops program
- //}
+  else { // report syntax error and exit TODO
+     printf("Syntax error.");
+     exit(0); // stops program
+  }
+}
+
+void gotosemi()
+{
+  if (lookahead() == ',')
+    getnext();
 }
 
 int lookahead()
@@ -192,9 +207,19 @@ bool isNumber(char c) // helper function for the scanner
   return isdigit(c); 
 }
 
-void push(std::string str, long long i) // push helper function
+void pushtemp(std::string str, long long i) // push helper function
 {
-  vec.push_back(std::pair<std::string, long long> (str, i));
+  tempvec.push_back(std::pair<std::string, long long> (str, i));
+}
+
+void poptemp() // pop helper function
+{
+  tempvec.pop_back();
+}
+
+void push(std::vector<std::pair<std::string, long long> > val) // push helper function
+{
+  vec.push_back(val);
 }
 
 void pop() // pop helper function
@@ -205,8 +230,10 @@ void pop() // pop helper function
 long long lookup(std::string val) // lookup an id value
 {
   for (int i = vec.size()-1; i >= 0; --i) { // reads vec from back and then
-    if (vec[i].first == val) { // returns value from back if exists
-      return vec[i].second;
+    for (int j = vec[i].size()-1; j >= 0; --j) {
+      if (vec[i][j].first == val) { // returns value from back if exists
+        return vec[i][j].second;
+      }
     }
   }
   return -1;

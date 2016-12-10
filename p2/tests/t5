@@ -1,5 +1,5 @@
 3 * ( let x = 2 in
-		( let y = x*x+1 in
+		( let y = x*(x+1) in
 			y/2
 		end )
 		+ 1
