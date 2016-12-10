@@ -1,0 +1,5 @@
+let z = 3 in 
+	let x=(1*1*1*1*1*1*1*1), y=z in
+		x+z
+	end
+end
