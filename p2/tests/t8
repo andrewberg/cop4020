@@ -1,6 +1,5 @@
 ( let x = 2 in
        let x = 3 in
-       x
 			let x = 4 in
 				x
 			end

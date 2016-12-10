@@ -30,7 +30,7 @@ long long expr()
       match('=');               // =
       value = expr();           // num()
       pushtemp(name1, value);   // pushes onto temp var
-      gotosemi();
+      gotosemi();               // goes to the semicolon if there is one
     }
 
     match(IN);          // in

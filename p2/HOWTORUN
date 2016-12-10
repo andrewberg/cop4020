@@ -1,0 +1,6 @@
+Input is piped in for instance ./proj2.x < tests/t1
+
+Do:
+	make
+Then:
+	If recompile do make clean
