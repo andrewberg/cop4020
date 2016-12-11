@@ -1,3 +1,5 @@
-FOR $i = 1 to 10
-	LET $foo = $i
-LOOP
+IF < $a $b !
+	display "IF BLOCK" !
+ELSE
+	display "ELSE BLOCK" !
+ENDIF

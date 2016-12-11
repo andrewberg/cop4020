@@ -24,3 +24,4 @@ void print_nbsp();
 void incDepth();
 void decDepth();
 void emit_display();
+void emit_newline();

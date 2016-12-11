@@ -31,7 +31,8 @@ ifstate IF
 else ELSE
 endif ENDIF
 display display
-isString "[^"]+
+newline newline
+isString DJFSLKJDSL
 
 
 %%
@@ -58,6 +59,7 @@ isString "[^"]+
 {display} needBr = 1; return 20;
 {operators} string = yytext; return 19;
 {isString} string = yytext; return 18;
+{newline} return 21;
 %%
 
 int curDepth = 0;
@@ -83,6 +85,7 @@ int main(int argc, char **argv) {
       				case 14: emit_op(string); break;
       				case 17: emit_number(number); break;
               case 16: emit_string(string); break;
+              case 18: emit_string(string); break;
       				case 50: if (notFirst == 1) printf(" "); else notFirst = 1; break;
       			}
       			token = yylex();
@@ -114,9 +117,10 @@ int main(int argc, char **argv) {
     		case 15: emit_op(string); break;
     		case 16: emit_string(string); break;
     		case 17: emit_number(number); break; // or use Lexer.number in C++
-        case 18: emit_op(string); printf("found string"); break;
-        case 19: emit_op(string); break;
+        case 18: emit_string(string); break;
+        case 19: emit_string(string); break;
         case 20: print_nbsp(); emit_display(); break;
+        case 21: emit_newline(); break;
     		case 50: printf(" "); break;
         default: break;
 		}
@@ -163,15 +167,6 @@ void emit_until() {
 	printf("<b>UNTIL</b>");
 }
 
-
-void print_br() {
-
-}
-
-void set_br() {
-
-}
-
 void emit_var() {
 	printf("\n<br><b>VAR</b>\n");
 }
@@ -189,7 +184,7 @@ void emit_else() {
 }
 
 void emit_false() {
-
+  printf("<b>FALSE</b>");
 }
 
 void emit_if() {
@@ -201,7 +196,7 @@ void emit_string(const char* str) {
 }
 
 void emit_true() {
-
+  printf("<b>TRUE</b>");
 }
 
 void emit_display() {
@@ -210,6 +205,10 @@ void emit_display() {
 
 void emit_endif() {
   printf("<b>ENDIF</b>");
+}
+
+void emit_newline() {
+  printf("newline");
 }
 
 void print_nbsp() {
