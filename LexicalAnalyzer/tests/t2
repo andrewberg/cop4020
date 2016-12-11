@@ -1,0 +1,14 @@
+VAR
+	$a = 8
+	$b = 12
+DO
+	UNTIL eq? $a $b !
+		IF < $a $b !
+			LET $b = - $b $a !
+		ELSE
+			LET $a = - $a $b !
+		ENDIF
+	LOOP
+	display $a !
+	newline !
+DONE

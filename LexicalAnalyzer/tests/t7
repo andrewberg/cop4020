@@ -1,0 +1,3 @@
+UNTIL eq? $a $b !
+	LET $foo = 10
+LOOP

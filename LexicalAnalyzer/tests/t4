@@ -1,0 +1,5 @@
+VAR
+	$greeting = "Hello, world!"
+DO
+	display $greeting !
+	newline !

@@ -1,0 +1,7 @@
+<html>
+<body>
+<br><b>FOR</b> $i <b>=</b> <i>1</i> <b>TO</b> <i>10</i>
+<br>&nbsp;&nbsp;<b>LET</b> $foo <b>=</b> $i
+LOOP
+</body>
+</html>
