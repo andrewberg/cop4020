@@ -1,3 +1,5 @@
+/* Andrew Berg's COP4020 Lexical Analyzer for Robert Van Engelen Fall 2016 */
+
 #include <stdio.h>
 
 void emit_let();
@@ -25,3 +27,4 @@ void incDepth();
 void decDepth();
 void emit_display();
 void emit_newline();
+void emit_eq();

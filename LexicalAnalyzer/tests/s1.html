@@ -1,16 +1,7 @@
 <html>
 <body>
-<br><b>VAR</b>
-<br>&nbsp;&nbsp;$a <b>=</b> <i>8</i> $b <b>=</b> <i>12</i>
-<br><b>DO<b/>
-<br>&nbsp;&nbsp;<b>UNTIL</b> eq? $a $b <b>!</b>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>IF</b> < $a $b <b>!</b>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>LET</b> $b <b>=</b> - $b $a <b>!</b>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>ELSE</b>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>LET</b> $a <b>=</b> - $a $b <b>!</b>
-<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>ENDIF</b>
-<br>&nbsp;&nbsp;<b>LOOP</b>
-<br>&nbsp;&nbsp;display $a <b>!</b> newline <b>!</b>
-<br><b>DONE</b>
+<br><b>FOR</b> $i <b>=</b> <i>1</i> <b>TO</b> <i>10</i>
+<br>&nbsp;&nbsp;<b>LET</b> $foo <b>=</b> $i
+<br><b>LOOP</b><br>
 </body>
 </html>
